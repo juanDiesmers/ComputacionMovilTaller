@@ -21,6 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ListaDestinosActivity" />
+        <activity android:name=".DetallesDestinoActivity" />
+        <activity android:name=".FavoritosActivity" />
     </application>
 
 </manifest>

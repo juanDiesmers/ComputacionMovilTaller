@@ -26,6 +26,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //Boton para ver destinos favoritos
+        val favoritosButton: Button = findViewById(R.id.button2)
+        favoritosButton.setOnClickListener {
+            //Abrir la actividad de favoritos
+            val intent = Intent(this, FavoritosActivity::class.java)
+            startActivity(intent)
+        }
+
         try {
             //Cargar los destinos
             val destinos = dataManager.cargarDestinos()
