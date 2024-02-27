@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun mostrarRecomendaciones() {
+        val listaFavoritos = dataManager.cargarDestinosFavoritos()
         //Verificar si hay favoritos
         if (listaFavoritos.isEmpty()) {
             // No hay favoritos, mostrar "NA"
@@ -67,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             // Obtener la categoria mas frecuente
             val categoriaMasFrecuente = obtenerCategoriaMasFrecuente()
             // Filtrar los favoritos por la categoria mas frecuente
-            val destinos = dataManager.cargarDestinos()
+            val destinos = dataManager.cargarDestinosFavoritos()
             val favoritosDeCategoria = destinos.filter { it.categoria == categoriaMasFrecuente }
 
             if (favoritosDeCategoria.isNotEmpty()) {

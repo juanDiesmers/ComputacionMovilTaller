@@ -9,9 +9,6 @@ import java.io.File
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 
-interface FavoritoObserver {
-    fun onFavoritosChanged()
-}
 class DataManager(private val context: Context) {
     //Metodo para inicializar el arcg¿hivo destinos_favoritos.json si no exist
     fun initFile() {

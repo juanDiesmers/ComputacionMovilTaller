@@ -28,6 +28,12 @@ class DetallesDestinoActivity : AppCompatActivity() {
             guardarDestinoComoFavorito(detallesDestino)
             //Mostrar unu mensaje indicando que se ha agregado a favoritos
             Toast.makeText(this,"Destino agregado a favoritos", Toast.LENGTH_SHORT).show()
+            btnAgregarFavoritos.setEnabled(false)
+        }
+
+        //Verificar si el destino ya esta en la lista de favoritos
+        if (dataManager.cargarDestinosFavoritos().contains(destino)){
+            btnAgregarFavoritos.isEnabled = false
         }
     }
 
