@@ -27,7 +27,8 @@ class ListaDestinosActivity : AppCompatActivity() {
             dataManager.cargarDestinosPorCategoria(categoriaSeleccionada)
         }
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, destinos.map { it.nombre })
+        val adapter =
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, destinos.map { it.nombre })
         listView.adapter = adapter
 
         listView.setOnItemClickListener { _, _, position, _ ->
@@ -38,24 +39,6 @@ class ListaDestinosActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-    }
-
-    private fun cargarTodos() {
-        val listView: ListView = findViewById(R.id.listView)
-
-        //Obtener todos los destinos
-        val destinos = dataManager.cargarDestinos()
-
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, destinos.map { it.nombre })
-        listView.adapter = adapter
-
-        listView.setOnItemClickListener{ _, _, position, _ ->
-            val  destinoSeleccionado = destinos[position]
-            val intent = Intent(this, DetallesDestinoActivity::class.java).apply {
-                putExtra("destino", destinoSeleccionado)
-            }
-            startActivity(intent)
-        }
     }
 }
 
