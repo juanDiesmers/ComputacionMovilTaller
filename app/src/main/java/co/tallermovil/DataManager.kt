@@ -80,4 +80,9 @@ class DataManager(private val context: Context) {
         }
         return stringBuilder.toString()
     }
+
+    fun cargarDestinosPorCategoria(categoria: String): List<Lugar> {
+        val destinos = cargarDestinos()
+        return destinos.filter { it.categoria == categoria }
+    }
 }

@@ -18,14 +18,39 @@ class ListaDestinosActivity : AppCompatActivity() {
         setContentView(R.layout.activity_lista_destinos)
 
         val listView: ListView = findViewById(R.id.listView)
-        // Obtener la lista de destinos del DataManager
-        val destinos = dataManager.cargarDestinos()
+        val categoriaSeleccionada = intent.getStringExtra("categoria") ?: ""
+
+        // Verificar si se selecciono "Todos"
+        val destinos = if (categoriaSeleccionada == "Todos") {
+            dataManager.cargarDestinos()
+        } else {
+            dataManager.cargarDestinosPorCategoria(categoriaSeleccionada)
+        }
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, destinos.map { it.nombre })
         listView.adapter = adapter
 
         listView.setOnItemClickListener { _, _, position, _ ->
             val destinoSeleccionado = destinos[position]
+            val intent = Intent(this, DetallesDestinoActivity::class.java).apply {
+                putExtra("destino", destinoSeleccionado)
+            }
+            startActivity(intent)
+        }
+
+    }
+
+    private fun cargarTodos() {
+        val listView: ListView = findViewById(R.id.listView)
+
+        //Obtener todos los destinos
+        val destinos = dataManager.cargarDestinos()
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, destinos.map { it.nombre })
+        listView.adapter = adapter
+
+        listView.setOnItemClickListener{ _, _, position, _ ->
+            val  destinoSeleccionado = destinos[position]
             val intent = Intent(this, DetallesDestinoActivity::class.java).apply {
                 putExtra("destino", destinoSeleccionado)
             }
